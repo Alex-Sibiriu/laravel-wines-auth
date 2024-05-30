@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Wine;
+use App\Models\Winery;
 use App\functions\helper;
 use App\Http\Requests\WineRequest;
 use App\Models\Flavour;
@@ -36,8 +37,9 @@ class WineController extends Controller
     $route = route('admin.wines.store');
     $wine = null;
     $flavours = Flavour::all();
+    $wineries = Winery::all();
 
-    return view('admin.wines.edit-create', compact('method', 'route', 'wine', 'flavours'));
+    return view('admin.wines.edit-create', compact('method', 'route', 'wine', 'flavours', 'wineries'));
   }
 
   /**
@@ -77,8 +79,9 @@ class WineController extends Controller
     $method = 'PUT';
     $route = route('admin.wines.update', $wine);
     $flavours = Flavour::all();
+    $wineries = Winery::all();
 
-    return view('admin.wines.edit-create', compact('method', 'route', 'wine', 'flavours'));
+    return view('admin.wines.edit-create', compact('method', 'route', 'wine', 'flavours', 'wineries'));
   }
 
   /**

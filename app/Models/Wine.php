@@ -10,7 +10,7 @@ class Wine extends Model
   use HasFactory;
 
   protected $fillable = [
-    'vineyard', 'wine', 'rating_average', 'rating_reviews', 'location', 'image', 'slug'
+    'vineyard', 'wine', 'rating_average', 'rating_reviews', 'location', 'image', 'slug', 'winery_id'
   ];
 
   public function flavours()
