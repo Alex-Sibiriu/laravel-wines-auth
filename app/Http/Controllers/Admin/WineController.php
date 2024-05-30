@@ -17,14 +17,18 @@ class WineController extends Controller
    */
   public function index()
   {
-    $form_data = $_GET['toSearch'];
-    if (isset($form_data)){
-      $wines = Wine::where('wine', 'like', '%' . $form_data . '%')->paginate(9);
-    } else{
+    if (isset($_GET['toSearch'])){
+      $toSearch = $_GET['toSearch'];
+    } else {
+      $toSearch = '';
+    }
 
+    if (isset($toSearch)){
+      $wines = Wine::where('wine', 'like', '%' .  $toSearch . '%')->paginate(9);
+    } else{
       $wines = Wine::paginate(9);
     }
-    return view('admin.wines.index', compact('wines'));
+    return view('admin.wines.index', compact('wines', 'toSearch'));
   }
 
   public function getFlavourWines(Flavour $flavour)
