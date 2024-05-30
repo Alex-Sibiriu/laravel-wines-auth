@@ -8,7 +8,11 @@
       <form action="{{ route('admin.flavours.store') }}" method="post">
         @csrf
         <input type="text" name="name">
-        <button type="submit">invia</button>
+        <button class="button-14" role="button" type="submit">
+          <div class="button-14-top text">Invia</div>
+          <div class="button-14-bottom"></div>
+          <div class="button-14-base"></div>
+        </button>
 
       </form>
 
