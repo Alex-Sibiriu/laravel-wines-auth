@@ -8,7 +8,7 @@
             <div class="row row-cols-3">
                 @foreach ($wines as $wine)
                     <div class="col mb-4">
-                        <div class="card h-100 text-center p-3 ">
+                        <div class="card card-custom h-100 text-center p-3 ">
                             <img src="{{ $wine->image }}" class="card-img-top" alt="{{ $wine->wine }}">
                             <div class="card-body">
                                 <h5 class="card-title">{{ $wine->wine }}</h5>
