@@ -23,12 +23,12 @@
                     @csrf
                     @method($method)
                     <div class="mb-3">
-                        <label for="winery" class="form-label">winery</label>
-                        <input type="text" class="form-control" name="winery" id="winery"
-                            placeholder="Example input placeholder" value="{{ old('winery', $wine?->winery) }}">
+                        <label for="vineyard" class="form-label">Vigna</label>
+                        <input type="text" class="form-control" name="vineyard" id="vineyard"
+                            placeholder="Example input placeholder" value="{{ old('vineyard', $wine?->vineyard) }}">
                     </div>
                     <div class="mb-3">
-                        <label for="wine" class="form-label">wine</label>
+                        <label for="wine" class="form-label">Vino</label>
                         <input type="text" class="form-control" name="wine" id="wine"
                             placeholder="Another input placeholder" value="{{ old('wine', $wine?->wine) }}">
                     </div>
@@ -55,6 +55,7 @@
                             placeholder="Another input placeholder" value="{{ old('image', $wine?->image) }}">
                     </div>
 
+
                     <button type="submit" class="btn btn-success">invio</button>
             </div>
 
@@ -77,6 +78,14 @@
                         <label class="btn btn-light border-1 border-black rounded-0" for="flavour-{{$flavour->id}}">{{$flavour->name}}</label>
                     @endforeach
                 </div>
+                <select class="form-select" aria-label="Default select example" name="winery_id">
+                  <option selected>Open this select menu</option>
+                  @foreach ($wineries as $winery )
+
+                  <option value="{{$winery->id}}" @if (old('winery_id', $wine?->winery?->id) == $winery->id) selected @endif>{{$winery->name}}</option>
+
+                  @endforeach
+                </select>
             </div>
 
         </form>

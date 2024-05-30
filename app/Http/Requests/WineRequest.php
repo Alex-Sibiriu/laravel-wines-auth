@@ -22,7 +22,7 @@ class WineRequest extends FormRequest
   public function rules(): array
   {
     return [
-      'winery' => 'required|min:3|max:500',
+      'vineyard' => 'required|min:3|max:500',
       'wine' => 'required|min:3|max:100',
       'rating_average' => 'required|max:4',
       'rating_reviews' => 'required|max:15',
@@ -34,9 +34,9 @@ class WineRequest extends FormRequest
   public function messages(): array
   {
     return [
-      'winery.required' => 'Inserire una vigna di provenienza',
-      'winery.min' => 'La vigna deve contenere almeno :min caratteri',
-      'winery.max' => 'La vigna non deve contenere più di :max caratteri',
+      'vineyard.required' => 'Inserire una vigna di provenienza',
+      'vineyard.min' => 'La vigna deve contenere almeno :min caratteri',
+      'vineyard.max' => 'La vigna non deve contenere più di :max caratteri',
 
       'wine.required' => 'Inserire un nome',
       'wine.min' => 'Il nome deve contenere almeno :min caratteri',
