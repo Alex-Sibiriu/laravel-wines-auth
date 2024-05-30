@@ -25,6 +25,10 @@
             <a class="nav-link  text-white " aria-current="page" href="{{ route('admin.wineries.index') }}">Gestisci
               vigne</a>
           </li>
+          <li class="nav-item">
+            <a class="nav-link  text-white " aria-current="page" href="{{ route('admin.flavours.index') }}">Gestisci
+              Aromi</a>
+          </li>
         </ul>
       </div>
     </div>
