@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\Models\Wine;
 use App\functions\helper;
 use App\Http\Requests\WineRequest;
+use App\Models\Flavour;
 
 class WineController extends Controller
 {
@@ -27,8 +28,9 @@ class WineController extends Controller
         $method = 'POST';
         $route = route('admin.wines.store');
         $wine = null;
+        $flavours = Flavour::all();
 
-        return view('admin.wines.edit-create', compact('method', 'route', 'wine'));
+        return view('admin.wines.edit-create', compact('method', 'route', 'wine', 'flavours'));
     }
 
     /**
@@ -42,6 +44,10 @@ class WineController extends Controller
         $newWine = new Wine();
         $newWine->fill($formData);
         $newWine->save();
+
+        if(array_key_exists('flavours', $formData)){
+            $newWine->flavours()->attach($formData['flavours']);
+        }
 
         return redirect()->route('admin.wines.show', $newWine);
     }
@@ -63,8 +69,9 @@ class WineController extends Controller
 
         $method = 'PUT';
         $route = route('admin.wines.update', $wine);
+        $flavours = Flavour::all();
 
-        return view('admin.wines.edit-create', compact('method', 'route', 'wine'));
+        return view('admin.wines.edit-create', compact('method', 'route', 'wine', 'flavours'));
     }
 
     /**
@@ -82,6 +89,12 @@ class WineController extends Controller
         }
 
         $wine->update($formData);
+
+        if(array_key_exists('flavours', $formData)){
+            $wine->flavours()->sync($formData['flavours']);
+        } else {
+            $wine->flavours()->detach();
+        }
 
         return redirect()->route('admin.wines.show', $wine);
     }
