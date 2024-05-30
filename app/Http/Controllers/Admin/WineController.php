@@ -17,15 +17,15 @@ class WineController extends Controller
    */
   public function index()
   {
-    if (isset($_GET['toSearch'])){
+    if (isset($_GET['toSearch'])) {
       $toSearch = $_GET['toSearch'];
     } else {
       $toSearch = '';
     }
 
-    if (isset($toSearch)){
+    if (isset($toSearch)) {
       $wines = Wine::where('wine', 'like', '%' .  $toSearch . '%')->paginate(9);
-    } else{
+    } else {
       $wines = Wine::paginate(9);
     }
     return view('admin.wines.index', compact('wines', 'toSearch'));
@@ -48,8 +48,9 @@ class WineController extends Controller
     $wine = null;
     $flavours = Flavour::all();
     $wineries = Winery::all();
+    $title = 'Aggiungi un nuovo vino';
 
-    return view('admin.wines.edit-create', compact('method', 'route', 'wine', 'flavours', 'wineries'));
+    return view('admin.wines.edit-create', compact('method', 'route', 'wine', 'flavours', 'wineries', 'title'));
   }
 
   /**
@@ -90,8 +91,9 @@ class WineController extends Controller
     $route = route('admin.wines.update', $wine);
     $flavours = Flavour::all();
     $wineries = Winery::all();
+    $title = 'Modifica il vino';
 
-    return view('admin.wines.edit-create', compact('method', 'route', 'wine', 'flavours', 'wineries'));
+    return view('admin.wines.edit-create', compact('method', 'route', 'wine', 'flavours', 'wineries', 'title'));
   }
 
   /**
