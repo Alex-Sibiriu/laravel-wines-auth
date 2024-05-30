@@ -10,6 +10,7 @@ class DashboardController extends Controller
 {
     public function index()
     {
-        return view('admin.home');
+        $wines = Wine::paginate(9);
+        return view('admin.home', compact('wines'));
     }
 }

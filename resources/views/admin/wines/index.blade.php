@@ -1,30 +1,50 @@
 @extends('layouts.main')
 
 @section('content')
-  <div class="container text-white ">
-    <h1 class=" text-center py-4">I Nostri Vini</h1>
+    <h1 class=" text-center py-4">Gestisci vini</h1>
+    <div class="container">
+        <table class="table">
+            <thead>
+                <tr>
+                    <th scope="col">Vino</th>
+                    <th scope="col">Vigna</th>
+                    <th scope="col">Aromi</th>
+                    <th scope="col">Azioni</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach ($wines as $wine)
+                    <tr>
+                        <td scope="row">{{ $wine->wine }}</td>
+                        <td>{{ $wine->winery }}</td>
 
-    <div class="row row-cols-3">
-      @foreach ($wines as $wine)
-        <div class="col mb-4">
-          <div class="card h-100 text-center p-3 ">
-            <img src="{{ $wine->image }}" class="card-img-top" alt="{{ $wine->wine }}">
-            <div class="card-body">
-              <h5 class="card-title">{{ $wine->wine }}</h5>
-              <a href="{{ route('admin.wines.show', $wine) }}" class="btn btn-primary">Info</a>
-              <a href="{{ route('admin.wines.edit', $wine) }}" class="btn btn-warning">Modifica</a>
-              <form action="{{ route('admin.wines.destroy', $wine) }}" method="POST">
-                @csrf
-                @method('DELETE')
-                <button type="submit"class="btn btn-danger">Elimina</button>
-              </form>
-            </div>
-          </div>
-        </div>
-      @endforeach
+                        <td>
+                            @forelse ($wine->flavours as $flavour)
+                                <span class="badge text-bg-success">{{ $flavour->name }}</span>
+                            @empty
+                                -
+                            @endforelse
+                        </td>
+                        <td>
+                            <div class="d-flex align-items-center justify-content-center">
+                                <a href="{{ route('admin.wines.show', $wine) }}" class="btn btn-primary me-2">
+                                    <i class="fa-solid fa-info"></i>
+                                </a>
+                                <a href="{{ route('admin.wines.edit', $wine) }}" class="btn btn-warning me-2">
+                                    <i class="fa-solid fa-pencil"></i></a>
+                                <form action="{{ route('admin.wines.destroy', $wine) }}" method="POST">
+                                    @csrf
+                                    @method('DELETE')
+                                    <button type="submit"class="btn btn-danger"><i class="fa-solid fa-trash"></i></button>
+                                </form>
+                            </div>
+
+                        </td>
+                    </tr>
+                @endforeach
+            </tbody>
+        </table>
+
+        {{ $wines->links() }}
     </div>
-
-    {{ $wines->links() }}
-
-  </div>
 @endsection
