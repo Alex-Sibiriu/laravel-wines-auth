@@ -17,7 +17,13 @@ class WineController extends Controller
    */
   public function index()
   {
-    $wines = Wine::paginate(9);
+    $form_data = $_GET['toSearch'];
+    if (isset($form_data)){
+      $wines = Wine::where('wine', 'like', '%' . $form_data . '%')->paginate(9);
+    } else{
+
+      $wines = Wine::paginate(9);
+    }
     return view('admin.wines.index', compact('wines'));
   }
 

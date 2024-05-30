@@ -29,6 +29,13 @@
             <a class="nav-link  text-white " aria-current="page" href="{{ route('admin.flavours.index') }}">Gestisci
               Aromi</a>
           </li>
+          <li class="nav-item ps-5">
+            <form class="d-flex" role="search" action="{{route('admin.wines.index')}}" method="GET">
+              @csrf
+              <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search" name="toSearch" value="">
+              <button class="btn btn-outline-success" type="submit">Search</button>
+            </form>
+          </li>
         </ul>
       </div>
     </div>
