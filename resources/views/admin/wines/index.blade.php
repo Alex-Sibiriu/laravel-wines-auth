@@ -8,6 +8,8 @@
                 <tr>
                     <th scope="col">Vino</th>
                     <th scope="col">Vigna</th>
+                    <th scope="col">Cantina</th>
+
                     <th scope="col">Aromi</th>
                     <th scope="col">Azioni</th>
                 </tr>
@@ -16,7 +18,8 @@
                 @foreach ($wines as $wine)
                     <tr>
                         <td scope="row">{{ $wine->wine }}</td>
-                        <td>{{ $wine->winery }}</td>
+                        <td>{{$wine->vineyard}}</td>
+                        <td>{{$wine->winery->name}}</td>
 
                         <td>
                             @forelse ($wine->flavours as $flavour)

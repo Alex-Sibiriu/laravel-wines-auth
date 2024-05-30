@@ -15,13 +15,7 @@
                                 <a href="{{ route('admin.wines.show', $wine) }}" class="btn btn-primary">
                                     <i class="fa-solid fa-info"></i>
                                 </a>
-                                <a href="{{ route('admin.wines.edit', $wine) }}" class="btn btn-warning">
-                                    <i class="fa-solid fa-pencil"></i></a>
-                                <form action="{{ route('admin.wines.destroy', $wine) }}" method="POST">
-                                    @csrf
-                                    @method('DELETE')
-                                    <button type="submit"class="btn btn-danger"><i class="fa-solid fa-trash"></i></button>
-                                </form>
+
                             </div>
                         </div>
                     </div>

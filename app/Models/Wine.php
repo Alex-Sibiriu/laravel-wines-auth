@@ -7,14 +7,19 @@ use Illuminate\Database\Eloquent\Model;
 
 class Wine extends Model
 {
-    use HasFactory;
+  use HasFactory;
 
-    protected $fillable = [
-        'winery', 'wine', 'rating_average', 'rating_reviews', 'location', 'image', 'slug'
-    ];
+  protected $fillable = [
+    'vineyard', 'wine', 'rating_average', 'rating_reviews', 'location', 'image', 'slug'
+  ];
 
-    public function flavours()
-    {
-        return $this->belongsToMany(Flavour::class);
-    }
+  public function flavours()
+  {
+    return $this->belongsToMany(Flavour::class);
+  }
+
+  public function winery()
+  {
+    return $this->belongsTo(Winery::class);
+  }
 }

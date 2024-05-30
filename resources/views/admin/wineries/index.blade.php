@@ -2,7 +2,7 @@
 
 @section('content')
   <div class="container text-white ">
-    <h1 class=" text-center py-4">Le nostre Vigne</h1>
+    <h1 class=" text-center py-4">Gestisci Cantine</h1>
 
     <div class="w-100">
       <form action="{{ route('admin.wineries.store') }}" method="post">
