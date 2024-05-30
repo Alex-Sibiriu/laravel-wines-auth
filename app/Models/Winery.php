@@ -10,4 +10,9 @@ class Winery extends Model
   use HasFactory;
 
   protected $fillable = ['name', 'slug'];
+
+  public function wines()
+  {
+    return $this->hasMany(Wine::class);
+  }
 }
