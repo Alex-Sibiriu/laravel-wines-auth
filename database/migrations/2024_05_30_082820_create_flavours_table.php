@@ -13,6 +13,8 @@ return new class extends Migration
     {
         Schema::create('flavours', function (Blueprint $table) {
             $table->id();
+            $table->string('name', 50);
+            $table->string('slug', 55)->unique();
             $table->timestamps();
         });
     }
