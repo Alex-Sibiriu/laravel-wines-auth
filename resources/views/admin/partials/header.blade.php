@@ -32,7 +32,7 @@
           <li class="nav-item ps-5">
             <form class="d-flex" role="search" action="{{route('admin.wines.index')}}" method="GET">
               @csrf
-              <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search" name="toSearch" value="">
+              <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search" name="toSearch" value="{{$toSearch}}">
               <button class="btn btn-outline-success" type="submit">Search</button>
             </form>
           </li>

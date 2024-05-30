@@ -3,13 +3,13 @@
 @section('content')
     <h1 class=" text-center py-4">Gestisci vini</h1>
     <div class="container">
+      @if (count($wines) > 0)
         <table class="table">
             <thead>
                 <tr>
                     <th scope="col">Vino</th>
                     <th scope="col">Vigna</th>
                     <th scope="col">Cantina</th>
-
                     <th scope="col">Aromi</th>
                     <th scope="col">Azioni</th>
                 </tr>
@@ -50,6 +50,9 @@
                 @endforeach
             </tbody>
         </table>
+      @else
+        <h3 class="text-center">Nessun vino trovato per la ricerca {{$toSearch}}</h3>
+      @endif
 
         @if ($wines instanceof \Illuminate\Pagination\LengthAwarePaginator)
 
