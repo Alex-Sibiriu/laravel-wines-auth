@@ -20,7 +20,10 @@
 
                         <td>
                             @forelse ($wine->flavours as $flavour)
-                                <span class="badge text-bg-success">{{ $flavour->name }}</span>
+                            <a href="{{ route('admin.getFlavourWines', $flavour->id) }}">
+                              <span class="badge text-bg-success">{{ $flavour->name }}</span>
+
+                            </a>
                             @empty
                                 -
                             @endforelse
@@ -45,6 +48,10 @@
             </tbody>
         </table>
 
-        {{ $wines->links() }}
+        @if ($wines instanceof \Illuminate\Pagination\LengthAwarePaginator)
+
+                    {{ $wines->links('pagination::bootstrap-5') }}
+
+            @endif
     </div>
 @endsection

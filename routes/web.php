@@ -23,24 +23,25 @@ Route::get('/', [PageController::class, 'index'])->name('home');
 
 
 Route::middleware('auth')->group(function () {
-    Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
-    Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
-    Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
+  Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
+  Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
+  Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
 
 Route::middleware(['auth', 'verified'])
-    ->prefix('admin')
-    ->name('admin.')
-    ->group(function () {
-        Route::get('/', [DashboardController::class, 'index'])->name('home');
-        Route::resource('wines', WineController::class);
-        Route::resource('wineries', WineryController::class)->except([
-            'edit', 'create', 'show'
-        ]);
-        Route::resource('flavours', FlavourController::class)->except([
-            'edit', 'create', 'show'
-        ]);
-    });
+  ->prefix('admin')
+  ->name('admin.')
+  ->group(function () {
+    Route::get('/', [DashboardController::class, 'index'])->name('home');
+    Route::resource('wines', WineController::class);
+    Route::resource('wineries', WineryController::class)->except([
+      'edit', 'create', 'show'
+    ]);
+    Route::resource('flavours', FlavourController::class)->except([
+      'edit', 'create', 'show'
+    ]);
+    Route::get('getFlavourWines/{flavour}', [WineController::class, 'getFlavourWines'])->name('getFlavourWines');
+  });
 
 
 require __DIR__ . '/auth.php';
