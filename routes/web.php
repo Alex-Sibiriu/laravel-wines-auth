@@ -3,6 +3,7 @@
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Admin\DashboardController;
+use App\Http\Controllers\Admin\FlavourController;
 use App\Http\Controllers\Admin\WineryController;
 use App\Http\Controllers\Admin\WineController;
 use App\Http\Controllers\Guest\PageController;
@@ -34,6 +35,9 @@ Route::middleware(['auth', 'verified'])
         Route::get('/', [DashboardController::class, 'index'])->name('home');
         Route::resource('wines', WineController::class);
         Route::resource('wineries', WineryController::class)->except([
+            'edit', 'create', 'show'
+        ]);
+        Route::resource('flavours', FlavourController::class)->except([
             'edit', 'create', 'show'
         ]);
     });
